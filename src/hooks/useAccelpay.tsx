@@ -14,10 +14,10 @@ const useAccelpay = ({
   );
   const [zip, setZip] = useState<string>(initialZip);
   const [lineItems, setLineItems] = useState<LineItem[]>(initialLineItems);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     (async () => {
-      console.log('lineItems', lineItems);
       if (zip && lineItems?.length) {
         const res = await client.getAvailability(zip, lineItems);
         if (res.ok) {
@@ -27,12 +27,13 @@ const useAccelpay = ({
               .filter(variantId => availability[variantId] !== 'available')
               .map(id => parseInt(id, 10)),
           );
+          setSubmitted(true);
         }
       }
     })();
   }, [zip, lineItems]);
 
-  return { unavailableVariantIds, setZip, setLineItems };
+  return { unavailableVariantIds, submitted, submitZip: setZip, setLineItems };
 };
 
 export default useAccelpay;

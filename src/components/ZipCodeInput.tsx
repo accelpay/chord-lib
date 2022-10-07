@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
+import styled from '@emotion/styled';
 import Button from './Button';
 import Input from './Input';
+
+const Form = styled.form({
+  display: 'flex',
+  margin: '20px 0',
+  width: '100%',
+});
 
 const ZipCodeInput = ({ submitZip }: any) => {
   const [zip, setZip] = useState<string>();
@@ -11,7 +18,7 @@ const ZipCodeInput = ({ submitZip }: any) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Input
         type="text"
         onChange={(e: React.FormEvent<HTMLInputElement>) =>
@@ -19,7 +26,7 @@ const ZipCodeInput = ({ submitZip }: any) => {
         }
       />
       <Button type="submit">Submit</Button>
-    </form>
+    </Form>
   );
 };
 
