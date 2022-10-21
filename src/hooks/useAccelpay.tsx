@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { client } from '../lib/api';
+import { useAPI } from '../lib/api';
 import { LineItem } from '../types';
 
 const useAccelpay = ({
   zip: initialZip,
   lineItems: initialLineItems,
+  options = {},
 }: {
   zip: string;
   lineItems: LineItem[];
+  options: { stage?: boolean };
 }) => {
   const [unavailableVariantIds, setUnavailableVariantIds] = useState<number[]>(
     [],
@@ -15,6 +17,7 @@ const useAccelpay = ({
   const [zip, setZip] = useState<string>(initialZip);
   const [lineItems, setLineItems] = useState<LineItem[]>(initialLineItems);
   const [submitted, setSubmitted] = useState(false);
+  const { client } = useAPI({ env: options.stage ? 'stage' : 'production' });
 
   useEffect(() => {
     (async () => {

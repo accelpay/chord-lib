@@ -25,12 +25,12 @@ const {
     unavailableVariantIds,
     submitted,
     submitZip,
-} = useAccelpay({ lineItems: [{ variantId: 123, quantity: 2 }] });
+} = useAccelpay({ lineItems: [{ variantId: 123, quantity: 2 }], options: { stage: true } });
 
 <div className="checkout">
     <div className="column-left">
         {/** LineItem */}
-        {unavailableVariantIds.includes(lineItem.variant_properties.accelpay_variant_id) && (
+        {unavailableVariantIds.includes(lineItem.metadata.accelpay_variant_id) && (
             <p className="error">Item unavailable for your area</p>
         )}
     </div>
@@ -43,3 +43,20 @@ const {
     </div>
 </div>
 ```
+
+#### useAccelpay
+
+##### Options
+
+The following can be passed to `useAccelpay(options)`
+
+- `lineItems: Array<LineItem>`
+  - Required
+  - Line Items to get availability for
+- `zip: String`
+  - Required
+  - Zip code string used to determine availability
+- `options: { stage: Boolean }`
+  - Optional
+  - Stage set to true will use the stage API env.
+  - Defaults to the production API
