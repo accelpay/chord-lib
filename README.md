@@ -25,7 +25,7 @@ const {
     unavailableVariantIds,
     submitted,
     submitZip,
-} = useAccelpay({ lineItems: [{ variantId: 123, quantity: 2 }], options: { stage: true } });
+} = useAccelpay({ lineItems: [{ variantId: 123, quantity: 2 }], stage: true });
 
 <div className="checkout">
     <div className="column-left">
@@ -52,9 +52,9 @@ The following can be passed to `useAccelpay(config)`
   - Required
   - Line Items to get availability for
 - `zip: String`
-  - Required
-  - Zip code string used to determine availability
-- `options: { stage: Boolean }`
   - Optional
-  - Stage set to true will use the stage API env.
+  - Zip code string used to determine availability
+- `stage: Boolean`
+  - Optional
+  - Set to true to use the stage API env.
   - Defaults to the production API
