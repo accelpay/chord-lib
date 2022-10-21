@@ -46,9 +46,7 @@ const {
 
 #### useAccelpay
 
-##### Options
-
-The following can be passed to `useAccelpay(options)`
+The following can be passed to `useAccelpay(config)`
 
 - `lineItems: Array<LineItem>`
   - Required
